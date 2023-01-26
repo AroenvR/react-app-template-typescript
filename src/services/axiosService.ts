@@ -1,9 +1,10 @@
 import axios from 'axios';
 const axiosService = axios.create({
-    // baseURL: 'http://localhost:3000',
+    baseURL: 'https://',
     headers: {
         'Content-Type': 'application/json',
     },
+    timeout: 10000,
 });
 
 /**
@@ -12,7 +13,7 @@ const axiosService = axios.create({
  * @returns a Promise with the response data.
  */
 export const httpGet = async (url: string): Promise<any> => {
-    return axiosService.get('http://' + url)
+    return axiosService.get(url)
         .then((response) => {
             if (response.status === 200) {
                 return response.data;
