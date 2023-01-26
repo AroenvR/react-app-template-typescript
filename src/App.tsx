@@ -1,12 +1,19 @@
+import { Routes, Route } from 'react-router-dom';
+
+import { Hello } from './components/Hello';
 
 /**
  * The application's main component.
- * @returns The application.
  */
 function App() {
   return (
     <div className="App">
-      Hi!
+        <p>Hello from App.tsx</p>
+      
+        <Routes>
+            <Route path="/component" element={<Hello/>} />
+        </Routes>
+
     </div>
   );
 }

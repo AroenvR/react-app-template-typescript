@@ -1,0 +1,43 @@
+import axios from 'axios';
+const axiosService = axios.create({
+    // baseURL: 'http://localhost:3000',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+});
+
+/**
+ * Generic HTTP GET request.
+ * @param url to request from.
+ * @returns a Promise with the response data.
+ */
+export const httpGet = async (url: string): Promise<any> => {
+    return axiosService.get('http://' + url)
+        .then((response) => {
+            if (response.status === 200) {
+                return response.data;
+            }
+        })
+        .catch((error) => {
+            console.error("httpsGet error:", error);
+        });
+}
+
+/**
+ * Generic HTTP POST request.
+ * @param url to post to.
+ * @param payload to send.
+ * @returns a PPromise with the response data.
+ */
+export const httpPost = async (url: string, payload: object): Promise<any> => {
+    return axiosService.post(url, payload)
+        .then(resp => {
+            if (resp.status === 201) {
+                return resp.data;
+            }
+        })
+        .catch(err => {
+            console.error("httpPost error:", err);
+            throw err;
+        });
+}
